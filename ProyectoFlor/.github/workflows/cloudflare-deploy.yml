@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - master
   pull_request:
     branches:
       - main
-      - master
 
 jobs:
   build:
@@ -16,24 +14,30 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
       - name: Install dependencies
         run: dotnet restore
+        working-directory: ProyectoFlor
+
+      - name: Build project
+        run: dotnet build -c Release
+        working-directory: ProyectoFlor
 
       - name: Publish WebAssembly app
-        run: dotnet publish -c Release -o ./publish
+        run: dotnet publish -c Release -o ../publish
+        working-directory: ProyectoFlor
 
       - name: Upload to Cloudflare Pages
-        uses: cloudflare/pages-action@1
+        uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: proyecto-flor
-          directory: ./publish/wwwroot
+          projectName: proyecto-ucu
+          directory: ./ProyectoFlor/publish/wwwroot
           productionBranch: main
