@@ -21,7 +21,7 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Install dependencies
+      - name: Restore dependencies
         run: dotnet restore
         working-directory: ProyectoFlor
 
@@ -29,15 +29,15 @@ jobs:
         run: dotnet build -c Release
         working-directory: ProyectoFlor
 
-      - name: Publish WebAssembly app
+      - name: Publish WebAssembly
         run: dotnet publish -c Release -o ../publish
         working-directory: ProyectoFlor
 
-      - name: Upload to Cloudflare Pages
+      - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: proyecto-ucu
-          directory: ./ProyectoFlor/publish/wwwroot
+          directory: ProyectoFlor/publish/wwwroot
           productionBranch: main
