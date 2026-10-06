@@ -1,0 +1,26 @@
+# Cloudflare Pages configuration
+name = "proyecto-flor"
+type = "javascript"
+compatibility_date = "2024-01-01"
+
+# Build configuration
+[build]
+command = "dotnet publish -c Release && echo Done"
+cwd = "./"
+watch_paths = ["ProyectoFlor/**/*.cs", "ProyectoFlor/**/*.razor", "ProyectoFlor/wwwroot/**/*"]
+
+# Output directory (where Cloudflare Pages will serve files from)
+[build.upload]
+directory = "ProyectoFlor/bin/Release/net8.0/publish/wwwroot"
+
+# Cache configuration
+[env.production]
+name = "Production"
+branch = "main"
+
+# Rewrite rules for SPA (important for Blazor routing)
+[[routes]]
+pattern = "/*"
+zone_name = "example.com"
+status = 200
+path = "index.html"

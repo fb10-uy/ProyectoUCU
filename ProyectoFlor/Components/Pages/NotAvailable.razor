@@ -1,0 +1,31 @@
+﻿@page "/not-available"
+
+@using MudBlazor
+@inject NavigationManager Nav
+
+<PageTitle>No disponible</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Small" Class="mt-8">
+    <MudCard>
+        <MudCardContent Class="text-center">
+            <h2 style="margin-bottom:0.5rem;">No disponible</h2>
+            <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Class="mb-4" Elevation="0" Dense="true">
+                <div style="display:flex; align-items:center; justify-content:center; gap:12px; text-align:center;">
+                    <div>⚠️ Este enlace aún no está funcional. Estamos trabajando para agregar el contenido pronto ⚠️</div>
+                </div>
+            </MudAlert>
+        </MudCardContent>
+        <MudCardActions Style="display:flex; justify-content:center;">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GoHome">
+                Volver al inicio
+            </MudButton>
+        </MudCardActions>
+    </MudCard>
+</MudContainer>
+
+@code {
+    private void GoHome()
+    {
+        Nav.NavigateTo("/");
+    }
+}

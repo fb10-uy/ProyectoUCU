@@ -1,0 +1,156 @@
+﻿@page "/"
+
+@using MudBlazor
+@inject NavigationManager Nav
+
+<PageTitle>Recursos de Enfermería</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="recursos-root">
+    <div class="recursos-inner">
+
+@*         @if (showConstruction)
+        {
+            <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Class="mb-4" Elevation="0" Dense="true">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                    <div>⚠️ Sitio en construcción — el contenido está en desarrollo ⚠️</div>
+                    <MudIconButton Icon="@Icons.Material.Filled.Close" Color="Color.Inherit" Size="Size.Small" OnClick="HideConstruction" />
+                </div>
+            </MudAlert>
+        } *@
+
+        <div class="recursos-header">
+            <div class="header-row">
+                <div class="accent-bar"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/LogoUCU.png" alt="UCU logo" class="header-logo" />
+            </div>
+
+            <h1 class="main-title">Vías Venosas Periféricas</h1>
+            <div class="subtitle">Recursos para el personal de Enfermería</div>
+        </div>
+
+        <MudGrid GutterSize="16" Class="recursos-grid">
+            <MudItem xs="12" md="6">
+                <a class="card-link" href="/not-available">
+                    <MudPaper Class="resource-card" Elevation="0" Square="false">
+                        <div class="card-inner">
+                            <div class="card-left">
+                                <div class="icon-box">
+                                    <MudIcon Icon="@Icons.Material.Filled.Checklist" Class="icon-white" />
+                                </div>
+                            </div>
+                            <div class="card-center">
+                                <div class="card-number">01</div>
+                                <div class="card-title">Checklist VVP</div>
+                                <div class="card-desc">Completar checklist de inserción</div>
+                            </div>
+                            <div class="card-right">
+                                <MudIcon Icon="@Icons.Material.Filled.ArrowForward" Class="arrow-icon" />
+                            </div>
+                        </div>
+                    </MudPaper>
+                </a>
+            </MudItem>
+
+            <MudItem xs="12" md="6">
+                <a class="card-link" href="/not-available">
+                    <MudPaper Class="resource-card" Elevation="0" Square="false">
+                        <div class="card-inner">
+                            <div class="card-left">
+                                <div class="icon-box">
+                                    <MudIcon Icon="@Icons.Material.Filled.Favorite" Class="icon-white" />
+                                </div>
+                            </div>
+                            <div class="card-center">
+                                <div class="card-number">02</div>
+                                <div class="card-title">Bundle de inserción VVP</div>
+                                <div class="card-desc">Consultar cuidados esenciales</div>
+                            </div>
+                            <div class="card-right">
+                                <MudIcon Icon="@Icons.Material.Filled.ArrowForward" Class="arrow-icon" />
+                            </div>
+                        </div>
+                    </MudPaper>
+                </a>
+            </MudItem>
+
+            <MudItem xs="12" md="6">
+                <a class="card-link" href="/not-available">
+                    <MudPaper Class="resource-card" Elevation="0" Square="false">
+                        <div class="card-inner">
+                            <div class="card-left">
+                                <div class="icon-box">
+                                    <MudIcon Icon="@Icons.Material.Filled.Description" Class="icon-white" />
+                                </div>
+                            </div>
+                            <div class="card-center">
+                                <div class="card-number">03</div>
+                                <div class="card-title">Protocolos institucionales</div>
+                                <div class="card-desc">Consultar protocolos e instructivos vigentes</div>
+                            </div>
+                            <div class="card-right">
+                                <MudIcon Icon="@Icons.Material.Filled.ArrowForward" Class="arrow-icon" />
+                            </div>
+                        </div>
+                    </MudPaper>
+                </a>
+            </MudItem>
+
+            <MudItem xs="12" md="6">
+                <a class="card-link" href="/not-available">
+                    <MudPaper Class="resource-card" Elevation="0" Square="false">
+                        <div class="card-inner">
+                            <div class="card-left">
+                                <div class="icon-box">
+                                    <MudIcon Icon="@Icons.Material.Filled.Image" Class="icon-white" />
+                                </div>
+                            </div>
+                            <div class="card-center">
+                                <div class="card-number">04</div>
+                                <div class="card-title">Infografías institucionales</div>
+                                <div class="card-desc">Consultar material informativo</div>
+                            </div>
+                            <div class="card-right">
+                                <MudIcon Icon="@Icons.Material.Filled.ArrowForward" Class="arrow-icon" />
+                            </div>
+                        </div>
+                    </MudPaper>
+                </a>
+            </MudItem>
+        </MudGrid>
+
+        <MudDivider Class="footer-divider" />
+
+        <div class="recursos-footer">
+            Herramienta de apoyo destinada a facilitar el acceso a los recursos institucionales. No sustituye los protocolos e instructivos vigentes de la institución.
+        </div>
+    </div>
+</MudContainer>
+
+@code {
+    private bool showConstruction = true;
+
+    private void HideConstruction()
+    {
+        showConstruction = false;
+    }
+
+    private void OnChecklistClick()
+    {
+        Nav.NavigateTo("/not-available");
+    }
+
+    private void OnBundleClick()
+    {
+        Nav.NavigateTo("/not-available");
+    }
+
+    private void OnProtocolosClick()
+    {
+        Nav.NavigateTo("/not-available");
+    }
+
+    private void OnInfografiasClick()
+    {
+        Nav.NavigateTo("/not-available");
+    }
+}

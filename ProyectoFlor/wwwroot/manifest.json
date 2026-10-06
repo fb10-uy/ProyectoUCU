@@ -1,0 +1,20 @@
+{
+  "name": "Recursos Enfermería",
+  "short_name": "Recursos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F3F0E8",
+  "theme_color": "#007E78",
+  "icons": [
+    {
+      "src": "images/ucu-logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/ucu-logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

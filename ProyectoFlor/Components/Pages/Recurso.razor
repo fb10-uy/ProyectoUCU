@@ -1,0 +1,28 @@
+@page "/recurso/{Resource}"
+@inject NavigationManager Nav
+
+<PageTitle>Recurso</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large" class="mt-8">
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GoBack">
+        <MudIcon Icon="@Icons.Material.Filled.ArrowBack" Class="mr-2"></MudIcon>
+        Volver al inicio
+    </MudButton>
+
+    <div class="placeholder-container mt-8">
+        <MudAlert Severity="Severity.Info">
+            <h3>Recurso: @Resource</h3>
+            <p>Este es un placeholder para el recurso solicitado. El contenido será agregado próximamente.</p>
+        </MudAlert>
+    </div>
+</MudContainer>
+
+@code {
+    [Parameter]
+    public string? Resource { get; set; }
+
+    private void GoBack()
+    {
+        Nav.NavigateTo("/inicio");
+    }
+}

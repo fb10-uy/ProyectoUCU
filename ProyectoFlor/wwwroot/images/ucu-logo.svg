@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Simplified placeholder SVG for UCU logo. Replace with real file if available. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="80" viewBox="0 0 300 80">
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="24" cy="24" r="22" stroke="#0B3154" stroke-width="4" fill="#FFF" />
+    <path d="M14 20h20v8H14z" fill="#0B3154" />
+    <text x="60" y="48" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700" fill="#0B3154">UCU</text>
+    <text x="170" y="28" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#0B3154">Universidad</text>
+    <text x="170" y="44" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#0B3154">Cat�lica del</text>
+    <text x="170" y="60" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#0B3154">Uruguay</text>
+  </g>
+</svg>
