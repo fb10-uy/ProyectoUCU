@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: {}
 
 jobs:
   build-and-deploy:
@@ -38,13 +39,19 @@ jobs:
         run: ls -la ProyectoFlor/publish/wwwroot/
         shell: bash
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: proyecto-ucu
-          directory: ProyectoFlor/publish/wwwroot
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          wranglerVersion: '4'
+          node-version: '18'
+
+      - name: Install Wrangler
+        run: npm install -g wrangler@4
+
+      - name: Publish with Wrangler
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx wrangler pages publish ProyectoFlor/publish/wwwroot \
+            --project-name proyecto-ucu \
+            --branch main
