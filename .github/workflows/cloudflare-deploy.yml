@@ -5,35 +5,39 @@ on:
     branches:
       - main
       - master
+
   pull_request:
     branches:
       - main
       - master
 
+permissions:
+  contents: read
+  deployments: write
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '8.0.x'
 
-      - name: Install dependencies
+      - name: Restore dependencies
         run: dotnet restore
 
-      - name: Publish WebAssembly app
+      - name: Publish Blazor WebAssembly
         run: dotnet publish -c Release -o ./publish
 
-      - name: Upload to Cloudflare Pages
-        uses: cloudflare/pages-action@1
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: proyecto-flor
-          directory: ./publish/wwwroot
-          productionBranch: main
+          command: pages deploy ./publish/wwwroot --project-name=proyecto-flor
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
