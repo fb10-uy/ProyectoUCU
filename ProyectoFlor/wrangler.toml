@@ -1,4 +1,3 @@
-# Cloudflare Pages configuration
 name = "proyecto-ucu"
 type = "javascript"
 main = "index.js"
@@ -6,9 +5,3 @@ main = "index.js"
 [env.production]
 name = "Production"
 branch = "main"
-
-# Routes configuration for SPA
-[[routes]]
-pattern = "/*"
-status = 200
-path = "/index.html"

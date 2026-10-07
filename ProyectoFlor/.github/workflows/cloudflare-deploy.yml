@@ -4,34 +4,39 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Build and Publish to Cloudflare Pages
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore dependencies
+      - name: Restore NuGet packages
         run: dotnet restore
         working-directory: ProyectoFlor
 
       - name: Build project
-        run: dotnet build -c Release
+        run: dotnet build -c Release --no-restore
         working-directory: ProyectoFlor
 
-      - name: Publish WebAssembly
-        run: dotnet publish -c Release -o ../publish
+      - name: Publish WebAssembly app
+        run: dotnet publish -c Release -o ../publish --no-build
         working-directory: ProyectoFlor
+
+      - name: List publish output (debug)
+        run: ls -la ProyectoFlor/publish/wwwroot/
+        shell: bash
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -40,4 +45,6 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: proyecto-ucu
           directory: ProyectoFlor/publish/wwwroot
-          productionBranch: main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          wranglerVersion: '4'
