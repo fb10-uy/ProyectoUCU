@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include=".github\workflows\cloudflare-deploy.yml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="MudBlazor" Version="9.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include=".github\workflows\" />
   </ItemGroup>
 
 </Project>
